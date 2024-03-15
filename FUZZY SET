@@ -1,0 +1,40 @@
+def fuzzy_union(set1, set2):
+    """
+    Computes the fuzzy union of two fuzzy sets.
+    """
+    result = {}
+    for key in set1.keys():
+        if key in set2:
+            result[key] = max(set1[key], set2[key])
+        else:
+            result[key] = set1[key]
+    for key in set2.keys():
+        if key not in set1:
+            result[key] = set2[key]
+    return result
+
+def fuzzy_intersection(set1, set2):
+    """
+    Computes the fuzzy intersection of two fuzzy sets.
+    """
+    result = {}
+    for key in set1.keys():
+        if key in set2:
+            result[key] = min(set1[key], set2[key])
+    return result
+
+def main():
+    set1 = {'a': 0.4, 'b': 0.7, 'c': 0.5}
+    set2 = {'b': 0.6, 'c': 0.8, 'd': 0.3}
+
+    print("Fuzzy Set 1:", set1)
+    print("Fuzzy Set 2:", set2)
+
+    union_result = fuzzy_union(set1, set2)
+    intersection_result = fuzzy_intersection(set1, set2)
+
+    print("\nFuzzy Union:", union_result)
+    print("Fuzzy Intersection:", intersection_result)
+
+if __name__ == "__main__":
+    main()
