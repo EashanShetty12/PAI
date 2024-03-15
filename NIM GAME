@@ -1,0 +1,27 @@
+import random
+
+def nim_game():
+    heap = random.randint(5, 15)  # Initial heap size
+    print("Initial heap size:", heap)
+    
+    while heap > 0:
+        player_stones = int(input("Enter stones to remove (1-3): "))
+        while player_stones < 1 or player_stones > 3 or player_stones > heap:
+            print("Invalid input. Please enter a number between 1 and 3, and less than or equal to the heap size.")
+            player_stones = int(input("Enter stones to remove (1-3): "))
+        
+        heap -= player_stones
+        
+        if heap == 0:
+            print("Player wins!")
+            break
+        
+        computer_stones = min(3, heap)
+        print("Computer removes", computer_stones, "stones")
+        heap -= computer_stones
+        
+        if heap == 0:
+            print("Computer wins!")
+            break
+
+nim_game()
